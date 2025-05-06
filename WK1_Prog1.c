@@ -2,13 +2,11 @@
 
 #define SIZE 100
 
-// Function declaration and definition
-void insertItem(int arr[], int *length, int value, int position);
-void deleteItem(int arr[], int *length, int position);
+// Function declarations
+//void insertItem(int arr[], int *length, int value, int position);
+//void deleteItem(int arr[], int *length, int position);
 void updateItem(int arr[], int length, int position, int newValue);
 int searchItem(int arr[], int length, int value);
-
-
 
 int main() {
     int arr[SIZE];
@@ -26,35 +24,31 @@ int main() {
         scanf("%d", &choice);
 
         switch (choice) {
-            case 1:
+        /*    case 1:
                 printf("Enter value to insert: ");
                 scanf("%d", &value);
                 printf("Enter position (0 to %d): ", length);
                 scanf("%d", &position);
-                // Call the insert function here
                 insertItem(arr, &length, value, position);
                 break;
 
             case 2:
                 printf("Enter position to delete (0 to %d): ", length - 1);
                 scanf("%d", &position);
-                // Call the delete function here
                 deleteItem(arr, &length, position);
                 break;
-
+            */
             case 3:
                 printf("Enter position to update (0 to %d): ", length - 1);
                 scanf("%d", &position);
                 printf("Enter new value: ");
                 scanf("%d", &newValue);
-                // Call the update function here
                 updateItem(arr, length, position, newValue);
                 break;
 
             case 4:
                 printf("Enter value to search: ");
                 scanf("%d", &value);
-                // Call the search function here
                 position = searchItem(arr, length, value);
                 if (position != -1)
                     printf("Item found at position %d.\n", position);
@@ -71,16 +65,26 @@ int main() {
         }
     }
 
-    // Function to Search an item
-    int searchItem(int arr[], int length, int value) {
-        for (int i = 0; i < length; i++) {
-            if (arr[i] == value) {
-                return i;  // Return the index where the value is found
-            }
-        }
-        return -1;  // Value not found
-    }
-    
-
     return 0;
+}
+
+// Update function
+void updateItem(int arr[], int length, int position, int newValue) {
+    if (position < 0 || position >= length) {
+        printf("Invalid position. Update failed.\n");
+        return;
+    }
+
+    arr[position] = newValue;
+    printf("Item updated successfully.\n");
+}
+
+// Search function (linear search)
+int searchItem(int arr[], int length, int value) {
+    for (int i = 0; i < length; i++) {
+        if (arr[i] == value) {
+            return i;
+        }
+    }
+    return -1;
 }
